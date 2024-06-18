@@ -68,7 +68,6 @@ json clean_json_strings(const std::string& input_str) {
         // json repair here
         std::string fixed_str = jsonrepair(input_str);
         json data = json::parse(fixed_str);
-
         for (auto& [key, value] : data.items()) {
             if (value.is_string()) {
                 std::string val = value.get<std::string>();
@@ -82,6 +81,7 @@ json clean_json_strings(const std::string& input_str) {
                     if (v.is_string()) {
                         v = clean_command_string(v.get<std::string>());
                     }
+                    
                 }
             }
         }
@@ -97,7 +97,7 @@ json clean_json_strings(const std::string& input_str) {
 
 std::vector<json> rubra_fc_json_tool_extractor(const std::string& output_str) {
     std::vector<json> result;
-    printf("OUTPUT STR TO BE PARSED : %s", output_str.c_str());
+    printf("OUTPUT STR TO BE PARSED : %s\n", output_str.c_str());
     if (output_str.find("endtoolcall") == std::string::npos) {
         return result;
     }
@@ -111,7 +111,8 @@ std::vector<json> rubra_fc_json_tool_extractor(const std::string& output_str) {
         size_t pos = segment.find("starttoolcall");
         if (pos != std::string::npos) {
             // Extract substring after "toolcall"
-            listOfStrToParse.push_back(segment.substr(pos + std::string("starttoolcall").length()));
+            std::string ss = segment.substr(pos + std::string("starttoolcall").length());
+            listOfStrToParse.push_back(ss);
         }
         start = end + std::string("endtoolcall").length();  // Move past the "endtoolcall"
     }
@@ -121,9 +122,10 @@ std::vector<json> rubra_fc_json_tool_extractor(const std::string& output_str) {
     try {
         for (const auto & line : listOfStrToParse) {
             // json fc = json::parse(line);
+            
             json fc = clean_json_strings(line);
-            if (fc["arguments"].is_string()) {
-                fc["arguments"] = json::parse(fc["arguments"].get<std::string>());
+            if (!fc["arguments"].is_string()) {
+                fc["arguments"] = fc["arguments"].dump();
             }
             if (!fc.is_null()) {
                 function_call_json.push_back(fc);

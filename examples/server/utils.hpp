@@ -474,7 +474,7 @@ static json format_final_response_oaicompat(const json & request, json result, c
 
                 tool_call["function"] = json{
                     {"name" , pc["name"]},
-                    {"arguments" , pc["kwargs"].dump()},
+                    {"arguments" , pc["kwargs"]},
                 };
                 oai_format_tool_calls.push_back(tool_call);
             }
