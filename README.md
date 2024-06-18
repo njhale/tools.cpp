@@ -23,10 +23,12 @@ For example:
 wget https://huggingface.co/sanjay920/Llama-3-8b-function-calling-alpha-v1.gguf/resolve/main/Llama-3-8b-function-calling-alpha-v1.gguf
 ```
 
-4. start server:
+4. start openai compatible server:
 ```
 ./llama-server -ngl 35 -m Llama-3-8b-function-calling-alpha-v1.gguf   --port 1234 --host 0.0.0.0  -c 16000 --chat-template llama3
 ```
+
+5. That's it! Make sure you turn `stream` off when making api calls to the server, as streaming feature is not supported yet.
 
 ### Recent API changes
 
