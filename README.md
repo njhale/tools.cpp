@@ -29,7 +29,7 @@ wget https://huggingface.co/sanjay920/Llama-3-8b-function-calling-alpha-v1.gguf/
 ./llama-server -ngl 37 -m Llama-3-8b-function-calling-alpha-v1.gguf   --port 1234 --host 0.0.0.0  -c 8000 --chat-template llama3
 ```
 
-5. Test to make sure the server is available:
+5. Test the server, make sure it is available:
 ```bash
 curl localhost:1234/v1/chat/completions \
   -H "Content-Type: application/json" \
