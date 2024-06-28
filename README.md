@@ -51,6 +51,7 @@ curl localhost:1234/v1/chat/completions \
 
 6. Try a python function calling example:
 ```python
+# if openai not installed, do `pip install openai`
 from openai import OpenAI
 client = OpenAI(api_key="123", base_url = "http://localhost:1234/v1/")
 
