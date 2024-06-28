@@ -21,7 +21,7 @@ npm install jsonrepair
 3. Download a compatible Rubra's gguf model:
 For example:
 ```
-wget https://huggingface.co/sanjay920/Llama-3-8b-function-calling-alpha-v1.gguf/resolve/main/Llama-3-8b-function-calling-alpha-v1.gguf
+wget https://huggingface.co/rubra-ai/Llama-3-8b-function-calling-alpha-v1.gguf/resolve/main/Llama-3-8b-function-calling-alpha-v1.gguf
 ```
 
 4. start openai compatible server:
