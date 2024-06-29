@@ -500,7 +500,7 @@ static json format_final_response_oaicompat(const json & request, json result, c
         }},
         {"id", completion_id}
     };
-    printf("==============formatted_final_response_oaicompat================\n %s\n\n", res.dump().c_str());
+    LOG_VERBOSE("final_oai_response", {{"response:", res.dump().c_str()}});
 
     if (server_verbose) {
         res["__verbose"] = result;

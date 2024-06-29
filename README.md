@@ -1,6 +1,6 @@
 # tools.cpp
 
-### tools.cpp quickstart
+## tools.cpp quickstart
 1. build from source:
    
 - Mac user
@@ -18,7 +18,7 @@ make LLAMA_CUDA=1
 npm install jsonrepair
 ```
 
-3. Download a compatible Rubra's gguf model:
+3. Download a compatible Rubra GGUF model:
 For example:
 ```
 wget https://huggingface.co/rubra-ai/Llama-3-8b-function-calling-alpha-v1.gguf/resolve/main/Llama-3-8b-function-calling-alpha-v1.gguf
@@ -29,7 +29,7 @@ wget https://huggingface.co/rubra-ai/Llama-3-8b-function-calling-alpha-v1.gguf/r
 ./llama-server -ngl 37 -m Llama-3-8b-function-calling-alpha-v1.gguf   --port 1234 --host 0.0.0.0  -c 8000 --chat-template llama3
 ```
 
-5. Test the server, make sure it is available:
+5. Test the server, ensure it is available:
 ```bash
 curl localhost:1234/v1/chat/completions \
   -H "Content-Type: application/json" \
@@ -94,6 +94,22 @@ ChatCompletion(id='chatcmpl-EmHd8kai4DVwBUOyim054GmfcyUbjiLf', choices=[Choice(f
 That's it! MAKE SURE you turn `stream` OFF when making api calls to the server, as the streaming feature is not supported yet. And we will support streaming too soon.
 
 For more function calling examples, you can checkout `test_llamacpp.ipynb` notebook.
+
+### Choosing a Chat Template for Different Models
+
+| Model   | Chat Template |
+|---------|:-------------:|
+| Llama3  |     llama3    |
+| Mistral |     llama2    |
+| Phi3    |      phi3     |
+| Gemma   |     gemma     |
+| Qwen2   |     chatml    |
+
+For example, to run [Rubra's enhanced Phi3 model](https://huggingface.co/rubra-ai/Phi-3-mini-128k-instruct-function-calling-alpha-v1-GGUF), use the following command:
+
+```bash
+./llama-server -ngl 37 -m phi-3-mini-128k-instruct-function-calling-alpha-v1.Q8_0.gguf --port 1234 --host 0.0.0.0 -c 32000 --chat-template phi3
+```
 
 ### Recent API changes
 

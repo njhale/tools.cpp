@@ -237,7 +237,6 @@ const std::vector<json> expand_messages(const json & body, json &tool_name_map) 
     }
     
     if (function_str != "") {
-        printf("\n=============Formatting function call Input from OPENAI format...============\n");
         const std::vector<json> expanded_messages = [&]() {
             std::vector<json> temp_vec;
             nlohmann::ordered_map<std::string, std::string> func_observation_map;
@@ -289,7 +288,7 @@ const std::vector<json> expand_messages(const json & body, json &tool_name_map) 
                     if (func_observation_map.find(tool_call_id) != func_observation_map.end()) {
                         func_observation_map[tool_call_id] = body["messages"][i]["content"].get<std::string>();
                     } else {
-                        printf("Tool call id not found in the map : %s", tool_call_id.c_str());
+                        std::cerr << "Tool call id not found in the map :" << tool_call_id.c_str() << std::endl;
                         // TODO: the input is not valid in this case, should return an error
                     }
 

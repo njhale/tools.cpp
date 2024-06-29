@@ -5,7 +5,7 @@
 #include <memory>
 
 using json = nlohmann::ordered_json;
-
+extern bool server_verbose;
 
 std::string generate_uuid() {
     static std::random_device rd;
@@ -87,7 +87,7 @@ json clean_json_strings(const std::string& input_str) {
         }
         return data;
     } catch (const json::parse_error& e) {
-        std::cout << "Error decoding JSON: " << e.what() << std::endl;
+        std::cerr << "Error decoding JSON: " << e.what() << std::endl;
         return nullptr;
     }
 }
@@ -97,7 +97,9 @@ json clean_json_strings(const std::string& input_str) {
 
 std::vector<json> rubra_fc_json_tool_extractor(const std::string& output_str) {
     std::vector<json> result;
-    printf("OUTPUT STR TO BE PARSED : %s\n", output_str.c_str());
+    if (server_verbose) {
+        std::cout << "Output to Parse : " << output_str.c_str() << std::endl;
+    }
     if (output_str.find("endtoolcall") == std::string::npos) {
         return result;
     }
