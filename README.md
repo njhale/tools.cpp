@@ -1,4 +1,5 @@
 # tools.cpp
+tools.cpp is Rubra's fork of llama.cpp, offering inference of Rubra's function calling models (and others) in pure C/C++.
 
 ## tools.cpp quickstart
 1. build from source:
