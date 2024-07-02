@@ -25,7 +25,6 @@ For example:
 wget https://huggingface.co/rubra-ai/Meta-Llama-3-8B-Instruct-GGUF/resolve/main/rubra-meta-llama-3-8b-instruct.Q6_K.gguf
 ```
 
-**Info**
 For large multi-part model files, such as [rubra-meta-llama-3-70b-instruct_Q6_K-0000*-of-00003.gguf](https://huggingface.co/rubra-ai/Meta-Llama-3-70B-Instruct-GGUF/tree/main), use the following command to merge them before proceeding to the next step:
 ```
 ./llama-gguf-split --merge rubra-meta-llama-3-70b-instruct_Q6_K-0000*-of-00003.gguf rubra-meta-llama-3-70b-instruct_Q6_K.gguf
