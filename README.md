@@ -112,6 +112,8 @@ For example, to run [Rubra's enhanced Phi3 model](https://huggingface.co/rubra-a
 ./llama-server -ngl 37 -m phi-3-mini-128k-instruct-function-calling-alpha-v1.Q8_0.gguf --port 1234 --host 0.0.0.0 -c 32000 --chat-template phi3
 ```
 
+===========================================================================================
+
 ### Recent API changes
 
 - [2024 Apr 21] `llama_token_to_piece` can now optionally render special tokens https://github.com/ggerganov/llama.cpp/pull/6807
