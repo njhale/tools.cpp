@@ -22,12 +22,19 @@ npm install jsonrepair
 3. Download a compatible Rubra GGUF model:
 For example:
 ```
-wget https://huggingface.co/rubra-ai/Llama-3-8b-function-calling-alpha-v1.gguf/resolve/main/Llama-3-8b-function-calling-alpha-v1.gguf
+wget https://huggingface.co/rubra-ai/Meta-Llama-3-8B-Instruct-GGUF/resolve/main/rubra-meta-llama-3-8b-instruct.Q6_K.gguf
 ```
+
+**Info**
+For large multi-part model files, such as [rubra-meta-llama-3-70b-instruct_Q6_K-0000*-of-00003.gguf](https://huggingface.co/rubra-ai/Meta-Llama-3-70B-Instruct-GGUF/tree/main), use the following command to merge them before proceeding to the next step:
+```
+./llama-gguf-split --merge rubra-meta-llama-3-70b-instruct_Q6_K-0000*-of-00003.gguf rubra-meta-llama-3-70b-instruct_Q6_K.gguf
+```
+This will merge multi-part model files to one gguf file `rubra-meta-llama-3-70b-instruct_Q6_K.gguf`.
 
 4. start openai compatible server:
 ```
-./llama-server -ngl 37 -m Llama-3-8b-function-calling-alpha-v1.gguf   --port 1234 --host 0.0.0.0  -c 8000 --chat-template llama3
+./llama-server -ngl 37 -m rubra-meta-llama-3-8b-instruct.Q6_K.gguf   --port 1234 --host 0.0.0.0  -c 8000 --chat-template llama3
 ```
 
 5. Test the server, ensure it is available:
